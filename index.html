@@ -208,7 +208,8 @@ function render(){
   $('unvWrap').style.display=uv.length?'':'none';
   $('unvs').innerHTML=uvs.length?uvs.map(card).join(''):'<div class="empty">None with these filters.</div>';
   $('nUnv').textContent='('+uvs.length+' of '+uv.length+')';
-  var shown=ms.length+mbs.length,all=m.length+(S.maybe==='hide'?0:mb.length);
+  var nuv=cars.filter(function(c){return c.group==='unverified';}),nuvs=nuv.filter(pass);
+  var shown=ms.length+mbs.length+nuvs.length,all=m.length+(S.maybe==='hide'?0:mb.length)+nuv.length;
   var pills=[];for(var f in LABEL){if(S[f]!==DEF[f]&&LABEL[f][S[f]])pills.push('<button class="pill" data-f="'+f+'">'+LABEL[f][S[f]]+'</button>');}
   $('pills').innerHTML=pills.join('')+(pills.length?'<button class="clear" data-clear>Clear all</button>':'<span class="meta" style="font-size:12.5px">No filters on</span>')+
     '<span class="count" id="count">Showing <b>'+shown+'</b> of '+all+' cars</span>';
